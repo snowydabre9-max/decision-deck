@@ -1,23 +1,21 @@
-import logo from './logo.svg';
-import './App.css';
+import { useState } from "react";
+import DecisionForm from "./components/DecisionForm";
+import FactorForm from "./components/FactorForm";
 
 function App() {
+  const [decision, setDecision] = useState(null);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="container">
+      <h1>DecisionDeck</h1>
+
+      <div className="card">
+        {!decision ? (
+          <DecisionForm onSubmit={setDecision} />
+        ) : (
+          <FactorForm decision={decision} />
+        )}
+      </div>
     </div>
   );
 }
